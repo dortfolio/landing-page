@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="apple-touch-icon" href="favicon.180.png">
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon.32.png" type="image/png">
+    <link rel="mask-icon" href="/images/favicon.svg" color="#111">
+
+    <meta name="description"
+        content="Dortfolio is a portfolio tokenization protocol on the EVM. Create, trade, and earn fees from auto-rebalancing multi-token ETFs.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta property="og:description"
+        content="Dortfolio is a portfolio tokenization protocol on the EVM. Create, trade, and earn fees from auto-rebalancing multi-token ETFs.">
+    <meta property="og:image" content="/images/favicon.512.png" />
+    <meta property="og:site_name" content="Dortfolio" />
+    <meta property="og:title" content="Turn Any Portfolio Into A Token" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dortfolio.org">
+    <title>Dortfolio - Turn Any Portfolio Into A Token</title>
+
+    <style>
+        :root {
+            --background-color: #eee;
+            --border-color: #ddd;
+            --border-focus-color: #afafaf;
+            --border-hover-color: #ccc;
+            --box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.05);
+            --color: #111;
+            --input-background-color: #fafafa;
+            --opacity: 0.4;
+
+            --bar-height: 4rem;
+            --border-radius: 0.5rem;
+            --font-monospace: Roboto Mono, ui-monospace, monospace;
+            --font-sans-serif: Public Sans, ui-sans-serif, sans-serif;
+            --font-serif: Roboto Slab, ui-serif, serif;
+        }
+
+        @media(prefers-color-scheme: dark) {
+            :root {
+                --background-color: #111;
+                --border-color: #222;
+                --border-focus-color: #333;
+                --border-hover-color: #282828;
+                --box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.2);
+                --color: #fff;
+                --input-background-color: #181818;
+                --opacity: 0.3;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            line-height: 1;
+            margin: 0;
+            transition: all 88ms ease-in-out;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--color);
+            display: grid;
+            font-family: var(--font-sans-serif);
+            font-size: 16px;
+            font-synthesis: none;
+            font-weight: 333;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            grid: var(--bar-height) 1fr var(--bar-height)/ auto;
+            min-height: 100dvh;
+            position: relative;
+
+            &>* {
+                padding: 1rem 4rem;
+            }
+        }
+
+        header {
+            align-items: center;
+            background-color: var(--background-color);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+
+            &>h1 {
+                align-items: center;
+                display: flex;
+                font-family: var(--font-serif);
+                font-size: 1.6rem;
+                font-weight: 444;
+                gap: 0.2rem;
+
+                &>svg {
+                    margin-left: -0.4rem;
+                    width: 2.2rem;
+                }
+            }
+        }
+
+        header>nav,
+        footer>nav {
+            display: grid;
+            gap: 1.4rem;
+            grid: auto / auto-flow;
+            place-content: center start;
+            place-items: center;
+
+            a {
+                color: inherit;
+                font-family: var(--font-monospace);
+                font-size: 0.84rem;
+                outline: none;
+                text-decoration: none;
+
+                &:focus,
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        main {
+            margin: 0 5rem;
+            place-self: center start;
+
+            &>h2 {
+                font-family: var(--font-serif);
+                font-size: 4.6rem;
+                font-weight: 400;
+                line-height: 1.1;
+                padding-bottom: 2rem;
+                max-width: 700px;
+            }
+
+            &>p {
+                line-height: 1.4;
+                max-width: 780px;
+
+                &+p {
+                    padding-top: 1rem;
+                }
+
+                &>a {
+                    color: inherit;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                &>b {
+                    font-weight: 600;
+                }
+            }
+
+            &>form {
+                display: flex;
+                gap: 0.9rem;
+                margin: 2rem 0;
+                max-width: 700px;
+
+                &>* {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    height: 3.3rem;
+                    padding: 1rem;
+                }
+
+                &>input {
+                    background-color: var(--input-background-color);
+                    border: 1px solid var(--border-color);
+                    color: inherit;
+                    font-family: var(--font-monospace);
+                    font-size: 0.94rem;
+                    outline: none;
+                    width: 100%;
+
+                    &::placeholder {
+                        color: var(--color);
+                        opacity: var(--opacity);
+                    }
+
+                    &:hover:enabled {
+                        border-color: var(--border-hover-color);
+                    }
+
+                    &:focus:enabled {
+                        border-color: var(--border-focus-color);
+                    }
+                }
+
+                &>button {
+                    background-color: var(--color);
+                    border: 2px solid transparent;
+                    color: var(--background-color);
+                    cursor: pointer;
+                    font-family: var(--font-serif);
+                    font-size: 1.1rem;
+                    font-weight: 444;
+                    outline: 2px solid transparent;
+                    width: 44%;
+
+                    &:hover:enabled,
+                    &:focus:enabled {
+                        border-color: var(--background-color);
+                        outline-color: var(--color);
+                    }
+
+                    &:disabled {
+                        cursor: default;
+                    }
+                }
+            }
+        }
+
+        footer {
+            background-color: var(--background-color);
+            border-top: 1px solid var(--border-color);
+            display: none;
+            place-content: center;
+        }
+
+        @media (max-width: 900px) {
+            body {
+
+                header,
+                footer {
+                    padding: 0 1.6rem;
+                }
+
+                main {
+                    padding: 1.6rem;
+                }
+            }
+
+            header>nav {
+                display: none;
+            }
+
+            main {
+                margin: 0;
+
+                &>h2 {
+                    font-size: 3.3rem;
+                    max-width: 500px;
+                }
+
+                &>p {
+                    font-size: 0.9rem;
+                    max-width: 650px;
+                }
+
+                &>form {
+                    gap: 0.6rem;
+                    max-width: 500px;
+                }
+
+            }
+
+            footer {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main>form {
+                max-width: 500px;
+                flex-direction: column;
+                max-width: 500px;
+
+                &>button,
+                &>input {
+                    width: 100%;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            <svg viewBox="0 0 100 100">
+                <use href="/images/logo.svg#logo">
+            </svg>
+            Dortfolio
+        </h1>
+        <nav>
+            <a href="https://discord.gg/kzwkCJaBe5" target="_blank">
+                Discord
+            </a>
+            <a href="https://t.me/dortfolio" target="_blank">
+                Telegram
+            </a>
+            <a href="https://twitter.com/dortfolio" target="_blank">
+                Twitter
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Turn Any Portfolio Into A Token</h2>
+        <p>
+            Dortfolio is a portfolio tokenization protocol on the EVM.
+
+            Users can permissionlessly create, trade, and earn fees from auto-rebalancing multi-token ETFs
+            defined by indexes, sectors, shared lists, or any combination of tokens and other portfolios.
+        </p>
+        <form id="waitlist" netlify>
+            <input placeholder="Enter your email" required="true" type="email">
+            <button type="submit">Join Waitlist</button>
+        </form>
+        <p>
+            Coming soon.
+        </p>
+        <p>
+            Building @
+            <a href="https://atrium.academy/uniswap" target="_blank">Uniswap Hook Incubator</a>
+            (Spring 2024)
+        </p>
+    </main>
+
+    <footer>
+        <nav>
+            <a href="https://discord.gg/kzwkCJaBe5" target="_blank">
+                Discord
+            </a>
+            <a href="https://t.me/dortfolio" target="_blank">
+                Telegram
+            </a>
+            <a href="https://twitter.com/dortfolio" target="_blank">
+                Twitter
+            </a>
+        </nav>
+    </footer>
+</body>
+
+<script type="text/javascript">
+    const waitlist = document.getElementById("waitlist");
+    const input = waitlist.querySelector("input[type=email]");
+    const join = waitlist.querySelector("button[type=submit]");
+
+    const joinDefaultLabel = join.textContent;
+    const joinLoadingLabel = "Joining...";
+    const joinSuccessLabel = "Welcome.";
+    const joinSuccessMessage = "Thank you for joining our waitlist.\n\nYou'll get an email when we launch. For other updates, please follow our socials.";
+    const joinErrorMessage = "Unable to join the waitlist. Please try again later.";
+
+    waitlist.addEventListener("submit", async event => {
+        try {
+            event.preventDefault();
+            join.textContent = joinLoadingLabel;
+
+            const response = await fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(new FormData(event.target)).toString()
+            });
+
+            if (response.ok) {
+                join.textContent = joinSuccessLabel;
+                input.disabled = true;
+                join.disabled = true;
+                alert(joinSuccessMessage);
+            } else {
+                throw new Error(joinErrorMessage);
+            }
+        } catch (error) {
+            join.textContent = joinDefaultLabel;
+            alert(error);
+        }
+    });
+</script>
