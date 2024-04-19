@@ -315,7 +315,7 @@
             Users can permissionlessly create, trade, and earn fees from auto-rebalancing multi-token ETFs
             defined by indexes, sectors, shared lists, or any combination of tokens and other portfolios.
         </p>
-        <form id="waitlist" netlify>
+        <form name="waitlist" netlify>
             <input placeholder="Enter your email" required="true" type="email">
             <button type="submit">Join Waitlist</button>
         </form>
@@ -345,7 +345,7 @@
 </body>
 
 <script type="text/javascript">
-    const waitlist = document.getElementById("waitlist");
+    const waitlist = document.querySelector("form[name=waitlist]");
     const input = waitlist.querySelector("input[type=email]");
     const join = waitlist.querySelector("button[type=submit]");
 
