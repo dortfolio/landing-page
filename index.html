@@ -118,15 +118,18 @@
                     opacity: 0.3;
                     outline: none;
                     text-decoration: none;
-                    width: 1.3rem;
 
                     &:focus,
                     &:hover {
                         opacity: 1;
                     }
 
-                    &:last-of-type {
-                        width: 1.16rem;
+                    &>svg {
+                        width: 1.3rem;
+
+                        &.twitter {
+                            width: 1.1rem;
+                        }
                     }
                 }
             }
@@ -293,6 +296,14 @@
         @media (max-width: 600px) {
             header>nav {
                 gap: 1.1rem;
+
+                a>svg {
+                    width: 1.2rem;
+
+                    &.twitter {
+                        width: 1rem;
+                    }
+                }
             }
 
             main>form {
@@ -319,17 +330,17 @@
         </h1>
         <nav>
             <a href="https://discord.gg/kzwkCJaBe5" target="_blank">
-                <svg viewBox="0 0 16 16">
+                <svg class="discord" viewBox="0 0 16 16">
                     <use href="images/discord.svg#discord" />
                 </svg>
             </a>
             <a href="https://t.me/dortfolio" target="_blank">
-                <svg viewBox="0 0 50 50">
+                <svg class="telegram" viewBox="0 0 50 50">
                     <use href="images/telegram.svg#telegram" />
                 </svg>
             </a>
             <a href="https://twitter.com/dortfolio" target="_blank">
-                <svg viewBox="0 0 16 16">
+                <svg class="twitter" viewBox="0 0 16 16">
                     <use href="images/twitter-x.svg#twitter-x" />
                 </svg>
             </a>
