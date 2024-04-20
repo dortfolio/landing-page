@@ -14,7 +14,7 @@
 
     <meta name="description"
         content="Dortfolio is a portfolio tokenization protocol on the EVM. Create, trade, and earn fees from auto-rebalancing multi-token ETFs.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
     <meta property="og:description"
         content="Dortfolio is a portfolio tokenization protocol on the EVM. Create, trade, and earn fees from auto-rebalancing multi-token ETFs.">
     <meta property="og:image" content="/images/favicon.512.png" />
@@ -36,6 +36,7 @@
             --opacity: 0.4;
 
             --bar-height: 4rem;
+            --block-spacing: 2rem;
             --border-radius: 0.5rem;
             --font-monospace: Roboto Mono, ui-monospace, monospace;
             --font-sans-serif: Public Sans, ui-sans-serif, sans-serif;
@@ -78,7 +79,7 @@
             position: relative;
 
             &>* {
-                padding: 1rem 4rem;
+                padding: 1rem calc(2 * var(--block-spacing));
             }
         }
 
@@ -104,32 +105,35 @@
                     width: 2.2rem;
                 }
             }
-        }
 
-        header>nav,
-        footer>nav {
-            display: grid;
-            gap: 1.4rem;
-            grid: auto / auto-flow;
-            place-content: center start;
-            place-items: center;
+            &>nav {
+                display: grid;
+                gap: 1.6rem;
+                grid: auto / auto-flow;
+                margin-top: 0.2rem;
+                place-items: center;
 
-            a {
-                color: inherit;
-                font-family: var(--font-monospace);
-                font-size: 0.84rem;
-                outline: none;
-                text-decoration: none;
+                &>a {
+                    color: inherit;
+                    opacity: 0.3;
+                    outline: none;
+                    text-decoration: none;
+                    width: 1.3rem;
 
-                &:focus,
-                &:hover {
-                    text-decoration: underline;
+                    &:focus,
+                    &:hover {
+                        opacity: 1;
+                    }
+
+                    &:last-of-type {
+                        width: 1.16rem;
+                    }
                 }
             }
         }
 
         main {
-            margin: 0 5rem;
+            margin: 0 calc(3 * var(--block-spacing));
             place-self: center start;
 
             &>h2 {
@@ -137,8 +141,8 @@
                 font-size: 4.6rem;
                 font-weight: 400;
                 line-height: 1.1;
-                padding-bottom: 2rem;
                 max-width: 700px;
+                margin-bottom: var(--block-spacing);
             }
 
             &>p {
@@ -156,16 +160,12 @@
                         text-decoration: none;
                     }
                 }
-
-                &>b {
-                    font-weight: 600;
-                }
             }
 
             &>form {
                 display: flex;
                 gap: 0.9rem;
-                margin: 2rem 0;
+                margin: var(--block-spacing) 0;
                 max-width: 700px;
 
                 &>* {
@@ -229,53 +229,76 @@
             place-content: center;
         }
 
-        @media (max-width: 900px) {
-            body {
+        @media (max-width: 1000px) {
+            main {
+                margin: 0;
+            }
+        }
 
-                header,
-                footer {
-                    padding: 0 1.6rem;
-                }
-
-                main {
-                    padding: 1.6rem;
-                }
+        @media (max-width: 780px) {
+            :root {
+                --bar-height: 3.3rem;
+                --block-spacing: 1.2rem;
             }
 
-            header>nav {
-                display: none;
+            header {
+                padding: 0 var(--block-spacing);
+
+                &>h1 {
+                    font-size: 1.4rem;
+                    gap: 0.1rem;
+
+                    &>svg {
+                        margin-left: -0.33rem;
+                        width: 2rem;
+                    }
+                }
             }
 
             main {
-                margin: 0;
+                padding: var(--block-spacing);
 
                 &>h2 {
-                    font-size: 3.3rem;
+                    font-size: 3rem;
+                    margin-bottom: var(--block-spacing);
                     max-width: 500px;
                 }
 
                 &>p {
                     font-size: 0.9rem;
-                    max-width: 650px;
+                    max-width: 600px;
+
+                    &+p {
+                        padding-top: 0.4rem;
+                    }
                 }
 
                 &>form {
                     gap: 0.6rem;
+                    margin: var(--block-spacing) 0;
                     max-width: 500px;
+
+                    &>input {
+                        font-size: 0.9rem;
+                    }
+
+                    &>button {
+                        font-size: 1rem;
+                    }
                 }
 
-            }
-
-            footer {
-                display: block;
             }
         }
 
         @media (max-width: 600px) {
+            header>nav {
+                gap: 1.1rem;
+            }
+
             main>form {
-                max-width: 500px;
                 flex-direction: column;
-                max-width: 500px;
+                gap: 0.5rem;
+                max-width: 440px;
 
                 &>button,
                 &>input {
@@ -296,19 +319,27 @@
         </h1>
         <nav>
             <a href="https://discord.gg/kzwkCJaBe5" target="_blank">
-                Discord
+                <svg viewBox="0 0 16 16">
+                    <use href="images/discord.svg#discord" />
+                </svg>
             </a>
             <a href="https://t.me/dortfolio" target="_blank">
-                Telegram
+                <svg viewBox="0 0 50 50">
+                    <use href="images/telegram.svg#telegram" />
+                </svg>
             </a>
             <a href="https://twitter.com/dortfolio" target="_blank">
-                Twitter
+                <svg viewBox="0 0 16 16">
+                    <use href="images/twitter-x.svg#twitter-x" />
+                </svg>
             </a>
         </nav>
     </header>
 
     <main>
-        <h2>Turn Any Portfolio Into A Token</h2>
+        <h2>
+            Turn Any Portfolio Into A Token
+        </h2>
         <p>
             Dortfolio is a portfolio tokenization protocol on the EVM.
 
@@ -328,20 +359,6 @@
             (Spring 2024)
         </p>
     </main>
-
-    <footer>
-        <nav>
-            <a href="https://discord.gg/kzwkCJaBe5" target="_blank">
-                Discord
-            </a>
-            <a href="https://t.me/dortfolio" target="_blank">
-                Telegram
-            </a>
-            <a href="https://twitter.com/dortfolio" target="_blank">
-                Twitter
-            </a>
-        </nav>
-    </footer>
 </body>
 
 <script type="text/javascript">
